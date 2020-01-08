@@ -54,12 +54,47 @@ app.get("/scrape", (req, res) => {
 // Route for getting all Articles from the db
 app.get("/articles", function (req, res) {
     db.Article.find({})
-      .populate("note")
-      .then(dbArticle => {
-        res.json(dbArticle);
-      })
-      .catch(err => {
-        res.json(err);
-      })
-  });
-  
+        .populate("note")
+        .then(dbArticle => {
+            res.json(dbArticle);
+        })
+        .catch(err => {
+            res.json(err);
+        });
+});
+
+// Route for grabbing a specific Article by id.
+app.get("/articles/:id", function (req, res) {
+    db.Article.findOne({
+            _id: mongoose.Types.ObjectId(req.params.id)
+        })
+        .populate("note")
+        .then(dbArticle => {
+            res.json(dbArticle);
+        })
+        .catch(err => {
+            res.json(err);
+        });
+});
+
+// Route for saving/updating an Article's associated Note
+app.post("/articles/:id", (req, res) => {
+    db.Note.create(req.body)
+        .then(dbNote => {
+            return db.Article.findOneAndUpdate({
+                    _id: mongoose.Types.ObjectId(req.params.id)
+                }, {
+                    $set: {
+                        note: dbNote._id
+                    }
+                }, {
+                    new: true
+                })
+                .then(dbArticle => {
+                    res.json(dbArticle);
+                })
+                .catch(err => {
+                    res.json(err);
+                });
+        });
+});
