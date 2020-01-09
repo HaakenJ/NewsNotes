@@ -37,6 +37,10 @@ module.exports = app => {
                 result.url = headline
                     .attr("href");
 
+                result.img = $(this)
+                    .find("img")
+                    .text();
+
                 result.author = $(this)
                     .find("h4.byline")
                     .text()

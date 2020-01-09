@@ -1,0 +1,12 @@
+.row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+div.card.article {
+  width: 250px;
+  height: 375px;
+  margin: 50px auto;
+}
+/*# sourceMappingURL=style.css.map */

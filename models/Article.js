@@ -14,6 +14,10 @@ const ArticleSchema = new Schema({
         type: String,
         required: true,
     },
+    img: {
+        type: String,
+        required: true,
+    },
     author: {
         type: String,
         required: false,
