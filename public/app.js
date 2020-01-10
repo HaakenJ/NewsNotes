@@ -1,3 +1,9 @@
+// Initialize Materialize Modal
+$(document).ready(function(){
+  $('.modal').modal();
+});
+
+
 // Grab the articles as a json
 $.getJSON("/articles", function (data) {
 
@@ -54,27 +60,6 @@ $(document).on("click", ".add-note", function () {
       console.log(data);
       $('#savenote').attr('data-id', data._id);
       $('#modal-title').text(data.title);
-      let noteModal = `
-      <div id="modal1" class="modal">
-        <div class="modal-content">
-          <h4>${data.title}</h4>
-          <input placeholder="Name of note" id="titleinput" type="text" name="title" class="validate">
-          <div class="row">
-            <form class="col s12">
-              <div class="row">
-                <div class="input-field col s12">
-                  <textarea id="bodyinput" name="body" class="materialize-textarea"></textarea>
-                  <label for="bodyinput">Note Body</label>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <a href="#!" id="savenote" class="modal-close waves-effect waves-green btn-flat" data-id="${data._id}">Save Note</a>
-        </div>
-      </div>`;
-      $("#notes").append(noteModal);
 
 
 
