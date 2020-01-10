@@ -1,15 +1,43 @@
 // Grab the articles as a json
-$.getJSON("/articles", function(data) {
+$.getJSON("/articles", function (data) {
   // For each one
+  let counter = 1;
+  let rowCounter = 1;
+  let newRow = $("<div>").addClass("row row-num-" + rowCounter);
+  $("#article-cards").append(newRow);
   for (var i = 0; i < data.length; i++) {
     // Display the apropos information on the page
-    $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
+    // $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
+    if (counter > 4) {
+      rowCounter++
+      newRow = $("<div>").addClass("row row-num-" + rowCounter);
+      $("#article-cards").append(newRow);
+      counter = 1;
+    }
+    let newCard = `
+    <div class="col s12 m3">
+      <div class="card article">
+        <div class="card-image">
+          <img src="${data[i].img}">
+          <a class="btn-floating halfway-fab waves-effect waves-light red" href="${data[i].url}"><i class="material-icons">info_outline</i></a>
+        </div>
+        <div class="card-content">
+          <p><strong>${data[i].title}</strong></p>
+          <p>${data[i].summary}</p>
+        </div>
+        <div class="card-action">
+          <a class="add-note" data-id="${data[i]._id} href="#">Add Note</a>
+        </div>
+      </div>
+    `;
+    $(".row-num-" + rowCounter).append(newCard);
+    counter ++
   }
 });
 
 
 // Whenever someone clicks a p tag
-$(document).on("click", "p", function() {
+$(document).on("click", ".add-note", function () {
   // Empty the notes from the note section
   $("#notes").empty();
   // Save the id from the p tag
@@ -17,11 +45,11 @@ $(document).on("click", "p", function() {
 
   // Now make an ajax call for the Article
   $.ajax({
-    method: "GET",
-    url: "/articles/" + thisId
-  })
+      method: "GET",
+      url: "/articles/" + thisId
+    })
     // With that done, add the note information to the page
-    .then(function(data) {
+    .then(function (data) {
       console.log(data);
       // The title of the article
       $("#notes").append("<h2>" + data.title + "</h2>");
@@ -43,23 +71,23 @@ $(document).on("click", "p", function() {
 });
 
 // When you click the savenote button
-$(document).on("click", "#savenote", function() {
+$(document).on("click", "#savenote", function () {
   // Grab the id associated with the article from the submit button
   var thisId = $(this).attr("data-id");
 
   // Run a POST request to change the note, using what's entered in the inputs
   $.ajax({
-    method: "POST",
-    url: "/articles/" + thisId,
-    data: {
-      // Value taken from title input
-      title: $("#titleinput").val(),
-      // Value taken from note textarea
-      body: $("#bodyinput").val()
-    }
-  })
+      method: "POST",
+      url: "/articles/" + thisId,
+      data: {
+        // Value taken from title input
+        title: $("#titleinput").val(),
+        // Value taken from note textarea
+        body: $("#bodyinput").val()
+      }
+    })
     // With that done
-    .then(function(data) {
+    .then(function (data) {
       // Log the response
       console.log(data);
       // Empty the notes section

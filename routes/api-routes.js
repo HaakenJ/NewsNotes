@@ -39,7 +39,7 @@ module.exports = app => {
 
                 result.img = $(this)
                     .find("img")
-                    .text();
+                    .attr("src");
 
                 result.author = $(this)
                     .find("h4.byline")
