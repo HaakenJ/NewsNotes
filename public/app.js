@@ -26,14 +26,16 @@ $.getJSON("/articles", function (data) {
       <div class="card article">
         <div class="card-image">
           <img src="${data[i].img}">
-          <a class="btn-floating halfway-fab waves-effect waves-light red" href="${data[i].url}"><i class="material-icons">info_outline</i></a>
+          <a class="btn-floating halfway-fab waves-effect waves-light red" href="${data[i].url}">
+            <i class="material-icons">info_outline</i>
+          </a>
+          <a class="add-note btn-floating halfway-fab waves-effect waves-light red modal-trigger" data-id="${data[i]._id}" href="#modal1">
+            <i class="material-icons">comment</i>
+          </a>
         </div>
         <div class="card-content">
           <p><strong>${data[i].title}</strong></p>
           <p>${data[i].summary}</p>
-        </div>
-        <div class="card-action">
-          <a class="add-note waves-effect waves-light btn modal-trigger" data-id="${data[i]._id}" href="#modal1">Add Note</a>
         </div>
       </div>
     `;
