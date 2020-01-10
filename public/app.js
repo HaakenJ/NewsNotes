@@ -27,7 +27,7 @@ $.getJSON("/articles", function (data) {
           <p>${data[i].summary}</p>
         </div>
         <div class="card-action">
-          <a class="add-note waves-effect waves-light btn modal-trigger" data-id="${data[i]._id} href="#modal1">Add Note</a>
+          <a class="add-note waves-effect waves-light btn modal-trigger" data-id="${data[i]._id}" href="#modal1">Add Note</a>
         </div>
       </div>
     `;
@@ -52,6 +52,8 @@ $(document).on("click", ".add-note", function () {
     // With that done, add the note information to the page
     .then(function (data) {
       console.log(data);
+      $('#savenote').attr('data-id', data._id);
+      $('#modal-title').text(data.title);
       let noteModal = `
       <div id="modal1" class="modal">
         <div class="modal-content">
