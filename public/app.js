@@ -1,5 +1,6 @@
 // Grab the articles as a json
 $.getJSON("/articles", function (data) {
+
   // For each one
   let counter = 1;
   let rowCounter = 1;
@@ -26,17 +27,17 @@ $.getJSON("/articles", function (data) {
           <p>${data[i].summary}</p>
         </div>
         <div class="card-action">
-          <a class="add-note" data-id="${data[i]._id} href="#">Add Note</a>
+          <a class="add-note waves-effect waves-light btn modal-trigger" data-id="${data[i]._id} href="#modal1">Add Note</a>
         </div>
       </div>
     `;
     $(".row-num-" + rowCounter).append(newCard);
-    counter ++
+    counter++
   }
 });
 
 
-// Whenever someone clicks a p tag
+// Whenever someone clicks an add note button
 $(document).on("click", ".add-note", function () {
   // Empty the notes from the note section
   $("#notes").empty();
@@ -51,14 +52,29 @@ $(document).on("click", ".add-note", function () {
     // With that done, add the note information to the page
     .then(function (data) {
       console.log(data);
-      // The title of the article
-      $("#notes").append("<h2>" + data.title + "</h2>");
-      // An input to enter a new title
-      $("#notes").append("<input id='titleinput' name='title' >");
-      // A textarea to add a new note body
-      $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
-      // A button to submit a new note, with the id of the article saved to it
-      $("#notes").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
+      let noteModal = `
+      <div id="modal1" class="modal">
+        <div class="modal-content">
+          <h4>${data.title}</h4>
+          <input placeholder="Name of note" id="titleinput" type="text" name="title" class="validate">
+          <div class="row">
+            <form class="col s12">
+              <div class="row">
+                <div class="input-field col s12">
+                  <textarea id="bodyinput" name="body" class="materialize-textarea"></textarea>
+                  <label for="bodyinput">Note Body</label>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" id="savenote" class="modal-close waves-effect waves-green btn-flat" data-id="${data._id}">Save Note</a>
+        </div>
+      </div>`;
+      $("#notes").append(noteModal);
+
+
 
       // If there's a note in the article
       if (data.note) {
