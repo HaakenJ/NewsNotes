@@ -77,7 +77,10 @@ module.exports = app => {
         db.Article.find({})
             .populate("note")
             .then(dbArticle => {
-                res.json(dbArticle);
+                hbrsObj = {
+                    articles: dbArticle
+                };
+                res.render("index", hbrsObj);
             })
             .catch(err => {
                 res.json(err);

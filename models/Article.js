@@ -16,7 +16,6 @@ const ArticleSchema = new Schema({
     },
     img: {
         type: String,
-        required: true,
     },
     author: {
         type: String,
