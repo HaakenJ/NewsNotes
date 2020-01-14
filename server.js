@@ -24,10 +24,6 @@ mongoose.connect(MONGODB_URI);
 
 require("./routes/api-routes")(app);
 
-app.get("/", (req, res) => {
-    res.sendFile("./public/index");
-});
-
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}.`);
 })

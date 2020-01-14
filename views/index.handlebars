@@ -1,37 +1,40 @@
 <nav>
-    <div class="nav-wrapper">
-      <a href="#" class="brand-logo">NewsNotes</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="/articles">Articles</a></li>
-        <li><a href="https://www.github.com/HaakenJ/NewsNotes">Github</a></li>
-        <li><a href="/scrape">Scrape Articles</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <div id="article-cards">
-      {{#each articles}}
-        {{> articles/article-block}}
-      {{/each}}
+  <div class="nav-wrapper">
+    <a href="#" class="brand-logo">NewsNotes</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a href="/articles">Articles</a></li>
+      <li><a href="https://www.github.com/HaakenJ/NewsNotes">Github</a></li>
+      <li><a href="/scrape">Scrape Articles</a></li>
+    </ul>
   </div>
-  <div id="notes"></div>
+</nav>
 
-  <div id="modal1" class="modal">
-    <div class="modal-content">
-      <h4 id="modal-title"></h4>
-      <input placeholder="Name of note" id="titleinput" type="text" name="title" class="validate">
-      <div class="row">
-        <form class="col s12">
-          <div class="row">
-            <div class="input-field col s12">
-              <textarea id="bodyinput" name="body" class="materialize-textarea"></textarea>
-              <label for="bodyinput">Note Body</label>
-            </div>
+<div class="container">
+  <div id="article-cards">
+    {{#each articles}}
+    {{> articles/article-block}}
+    {{/each}}
+  </div>
+</div>
+
+<div id="notes"></div>
+
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <h4 id="modal-title"></h4>
+    <input placeholder="Name of note" id="titleinput" type="text" name="title" class="validate">
+    <div class="row">
+      <form class="col s12">
+        <div class="row">
+          <div class="input-field col s12">
+            <textarea id="bodyinput" name="body" class="materialize-textarea"></textarea>
+            <label for="bodyinput">Note Body</label>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
-    <div class="modal-footer">
-      <a href="#!" id="savenote" class="modal-close waves-effect waves-green btn-flat" data-id="">Save Note</a>
-    </div>
-  </div>`;
+  </div>
+  <div class="modal-footer">
+    <a href="#!" id="savenote" class="modal-close waves-effect waves-green btn-flat" data-id="">Save Note</a>
+  </div>
+</div>`;
