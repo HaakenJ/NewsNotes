@@ -17,6 +17,7 @@ module.exports = app => {
                 hbrsObj = {
                     articles: dbArticle
                 };
+                console.log(typeof hbrsObj.articles[0]._id);
                 res.render("index", hbrsObj);
             })
             .catch(err => {
