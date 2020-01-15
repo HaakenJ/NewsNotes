@@ -2,12 +2,24 @@
     display: flex;
 }
 
+#article-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
 div.card.article {
     height: 85%;
     margin: 50px auto;
+    width: 250px;
 }
 
 .add-note.modal-trigger {
     position: absolute;
     right: 80px;
+}
+
+textarea#bodyinput {
+    position: relative;
+    left: -10px;
 }

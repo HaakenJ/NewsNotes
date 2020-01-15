@@ -10,6 +10,20 @@ const db = require("../models");
 
 module.exports = app => {
 
+    app.get("/", function (req, res) {
+        db.Article.find({})
+            .populate("note")
+            .then(dbArticle => {
+                hbrsObj = {
+                    articles: dbArticle
+                };
+                res.render("index", hbrsObj);
+            })
+            .catch(err => {
+                res.json(err);
+            });
+    });
+
     app.get("/scrape", (req, res) => {
         // Grab html with axios.
         axios.get("https://www.thestranger.com/").then(response => {
@@ -68,7 +82,8 @@ module.exports = app => {
                     }
                 })
             });
-            res.send("Scrape Complete");
+            console.log("Scrape Complete");
+            res.redirect("/");
         });
     });
 

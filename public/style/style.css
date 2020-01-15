@@ -4,13 +4,30 @@
   display: flex;
 }
 
+#article-cards {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
 div.card.article {
   height: 85%;
   margin: 50px auto;
+  width: 250px;
 }
 
 .add-note.modal-trigger {
   position: absolute;
   right: 80px;
+}
+
+textarea#bodyinput {
+  position: relative;
+  left: -10px;
 }
 /*# sourceMappingURL=style.css.map */
