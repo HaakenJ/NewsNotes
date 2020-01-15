@@ -25,4 +25,9 @@ div.card.article {
   position: absolute;
   right: 80px;
 }
+
+textarea#bodyinput {
+  position: relative;
+  left: -10px;
+}
 /*# sourceMappingURL=style.css.map */

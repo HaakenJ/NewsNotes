@@ -4,51 +4,11 @@ $(document).ready(function(){
 });
 
 
-// Grab the articles as a json
-// $.getJSON("/articles", function (data) {
-
-//   // For each one
-//   let counter = 1;
-//   let rowCounter = 1;
-//   let newRow = $("<div>").addClass("row row-num-" + rowCounter);
-//   $("#article-cards").append(newRow);
-//   for (var i = 0; i < data.length; i++) {
-//     // Display the apropos information on the page
-//     // $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
-//     if (counter > 4) {
-//       rowCounter++
-//       newRow = $("<div>").addClass("row row-num-" + rowCounter);
-//       $("#article-cards").append(newRow);
-//       counter = 1;
-//     }
-//     let newCard = `
-//     <div class="col s12 m3">
-//       <div class="card article">
-//         <div class="card-image">
-//           <img src="${data[i].img}">
-//           <a class="btn-floating halfway-fab waves-effect waves-light red" href="${data[i].url}">
-//             <i class="material-icons">info_outline</i>
-//           </a>
-//           <a class="add-note btn-floating halfway-fab waves-effect waves-light red modal-trigger" data-id="${data[i]._id}" href="#modal1">
-//             <i class="material-icons">comment</i>
-//           </a>
-//         </div>
-//         <div class="card-content">
-//           <p><strong>${data[i].title}</strong></p>
-//           <p>${data[i].summary}</p>
-//         </div>
-//       </div>
-//     `;
-//     $(".row-num-" + rowCounter).append(newCard);
-//     counter++
-//   }
-// });
-
-
 // Whenever someone clicks an add note button
 $(document).on("click", ".add-note", function () {
   // Empty the notes from the note section
-  $("#notes").empty();
+  $("#titleinput").val('');
+  $("#bodyinput").val('');
   // Save the id from the p tag
   var thisId = $(this).attr("data-id");
 
@@ -59,7 +19,6 @@ $(document).on("click", ".add-note", function () {
     })
     // With that done, add the note information to the page
     .then(function (data) {
-      console.log(data);
       $('#savenote').attr('data-id', data._id);
       $('#modal-title').text(data.title);
 
